@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924215829) do
+ActiveRecord::Schema.define(version: 20150924220539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20150924215829) do
 
   add_index "comics", ["artist_id"], name: "index_comics_on_artist_id", using: :btree
   add_index "comics", ["name", "artist_id"], name: "index_comics_on_name_and_artist_id", unique: true, using: :btree
+
+  create_table "maps", force: :cascade do |t|
+    t.float    "center_radius"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "maps", ["user_id"], name: "index_maps_on_user_id", using: :btree
 
   create_table "thumbnails", force: :cascade do |t|
     t.integer  "comic_id"
@@ -50,5 +59,6 @@ ActiveRecord::Schema.define(version: 20150924215829) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "comics", "artists"
+  add_foreign_key "maps", "users"
   add_foreign_key "thumbnails", "comics"
 end

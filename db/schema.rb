@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924220539) do
+ActiveRecord::Schema.define(version: 20150924221653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 20150924220539) do
     t.string "name"
     t.string "link"
   end
+
+  create_table "bubbles", force: :cascade do |t|
+    t.float    "radius",         null: false
+    t.float    "position_r",     null: false
+    t.float    "position_theta", null: false
+    t.integer  "map_id",         null: false
+    t.integer  "thumbnail_id",   null: false
+    t.text     "description",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "bubbles", ["map_id"], name: "index_bubbles_on_map_id", using: :btree
+  add_index "bubbles", ["thumbnail_id"], name: "index_bubbles_on_thumbnail_id", using: :btree
 
   create_table "comics", force: :cascade do |t|
     t.string  "name"
@@ -58,6 +72,8 @@ ActiveRecord::Schema.define(version: 20150924220539) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "bubbles", "maps"
+  add_foreign_key "bubbles", "thumbnails"
   add_foreign_key "comics", "artists"
   add_foreign_key "maps", "users"
   add_foreign_key "thumbnails", "comics"

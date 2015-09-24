@@ -10,8 +10,9 @@
 #
 
 class Map < ActiveRecord::Base
-  validates :user, presence: true, uniqueness: true
-  validates :center_radius, presence: true
-
   belongs_to :user
+  has_many :bubbles
+
+  validates :user, :center_radius, presence: true, uniqueness: true
+  validates :center_radius, presence: true
 end

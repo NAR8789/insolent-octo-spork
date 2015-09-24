@@ -3,7 +3,7 @@
 # Table name: thumbnails
 #
 #  id                     :integer          not null, primary key
-#  comic_id               :integer
+#  comic_id               :integer          not null
 #  thumbnail_file_name    :string
 #  thumbnail_content_type :string
 #  thumbnail_file_size    :integer

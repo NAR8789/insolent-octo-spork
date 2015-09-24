@@ -3,10 +3,9 @@
 # Table name: artists
 #
 #  id   :integer          not null, primary key
-#  name :string
+#  name :string           not null
 #  link :string
 #
-
 
 class Artist < ActiveRecord::Base
   has_many :comics

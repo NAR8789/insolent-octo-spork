@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150924223658) do
   enable_extension "plpgsql"
 
   create_table "artists", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "link"
   end
 
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20150924223658) do
   add_index "bubbles", ["thumbnail_id"], name: "index_bubbles_on_thumbnail_id", using: :btree
 
   create_table "comics", force: :cascade do |t|
-    t.string  "name"
+    t.string  "name",                null: false
     t.string  "link"
-    t.string  "default_description"
+    t.text    "default_description"
     t.integer "artist_id"
   end
 
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20150924223658) do
   add_index "comics", ["name", "artist_id"], name: "index_comics_on_name_and_artist_id", unique: true, using: :btree
 
   create_table "maps", force: :cascade do |t|
-    t.float    "center_radius"
-    t.integer  "user_id"
+    t.float    "center_radius", null: false
+    t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150924223658) do
   add_index "sectors", ["name"], name: "index_sectors_on_name", unique: true, using: :btree
 
   create_table "thumbnails", force: :cascade do |t|
-    t.integer  "comic_id"
+    t.integer  "comic_id",               null: false
     t.string   "thumbnail_file_name"
     t.string   "thumbnail_content_type"
     t.integer  "thumbnail_file_size"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150924223658) do
   add_index "thumbnails", ["comic_id"], name: "index_thumbnails_on_comic_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
+    t.string   "email",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

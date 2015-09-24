@@ -3,12 +3,11 @@
 # Table name: comics
 #
 #  id                  :integer          not null, primary key
-#  name                :string
+#  name                :string           not null
 #  link                :string
-#  default_description :string
+#  default_description :text
 #  artist_id           :integer
 #
-
 
 class Comic < ActiveRecord::Base
   belongs_to :artist

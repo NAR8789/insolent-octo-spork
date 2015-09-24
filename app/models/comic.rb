@@ -11,9 +11,9 @@
 
 
 class Comic < ActiveRecord::Base
-  validates_presence_of :name, :link
-  validates_uniqueness_of :name, scope: :artist
-
   belongs_to :artist
   has_many :thumbnails
+
+  validates_presence_of :name, :link
+  validates_uniqueness_of :name, scope: :artist
 end

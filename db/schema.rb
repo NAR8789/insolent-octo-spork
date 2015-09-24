@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924204653) do
+ActiveRecord::Schema.define(version: 20150924210340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,5 +31,12 @@ ActiveRecord::Schema.define(version: 20150924204653) do
   add_index "comics", ["artist_id"], name: "index_comics_on_artist_id", using: :btree
   add_index "comics", ["name", "artist_id"], name: "index_comics_on_name_and_artist_id", unique: true, using: :btree
 
+  create_table "thumbnails", force: :cascade do |t|
+    t.integer "comic_id"
+  end
+
+  add_index "thumbnails", ["comic_id"], name: "index_thumbnails_on_comic_id", using: :btree
+
   add_foreign_key "comics", "artists"
+  add_foreign_key "thumbnails", "comics"
 end

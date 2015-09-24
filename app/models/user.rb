@@ -11,5 +11,5 @@
 class User < ActiveRecord::Base
   has_one :map
 
-  validates :email, presence:true, uniqueness:true
+  validates :email, presence: true, uniqueness: true
 end

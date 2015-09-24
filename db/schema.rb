@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924221653) do
+ActiveRecord::Schema.define(version: 20150924223658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 20150924221653) do
 
   add_index "maps", ["user_id"], name: "index_maps_on_user_id", using: :btree
 
+  create_table "sectors", force: :cascade do |t|
+    t.integer  "map_id",        null: false
+    t.float    "relative_size", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "name",          null: false
+    t.text     "description"
+  end
+
+  add_index "sectors", ["map_id"], name: "index_sectors_on_map_id", using: :btree
+  add_index "sectors", ["name"], name: "index_sectors_on_name", unique: true, using: :btree
+
   create_table "thumbnails", force: :cascade do |t|
     t.integer  "comic_id"
     t.string   "thumbnail_file_name"
@@ -76,5 +88,6 @@ ActiveRecord::Schema.define(version: 20150924221653) do
   add_foreign_key "bubbles", "thumbnails"
   add_foreign_key "comics", "artists"
   add_foreign_key "maps", "users"
+  add_foreign_key "sectors", "maps"
   add_foreign_key "thumbnails", "comics"
 end

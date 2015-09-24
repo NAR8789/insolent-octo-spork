@@ -12,7 +12,7 @@
 
 class Thumbnail < ActiveRecord::Base
   validates_presence_of :comic
-  validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
+  validates_attachment :thumbnail, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 
   belongs_to :comic
   has_attached_file :avatar

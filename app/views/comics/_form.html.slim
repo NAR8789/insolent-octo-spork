@@ -14,7 +14,7 @@
     = f.text_field :link
   .field
     = f.label :artist
-    = f.collection_select :artist, Artist.all, :id, :name
+    = f.collection_select :artist_id, Artist.all, :id, :name, include_blank: true
   .field
     = f.label :default_description
     = f.text_area :default_description

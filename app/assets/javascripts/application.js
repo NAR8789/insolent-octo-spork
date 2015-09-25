@@ -15,3 +15,4 @@
 //= require jquery.remotipart
 //= require turbolinks
 //= require_tree .
+//= require Snap.svg-0.4.1/dist/snap.svg-min.js

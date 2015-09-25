@@ -8,19 +8,46 @@
         this.x      = args.x;
         this.y      = args.y;
         this.radius = args.radius;
-    }
+    };
 
     Bubble.prototype.draw = function() {
-        //this.bubble = this.map.circle(this.x, this.y, this.radius);
-        this.bubble = this.map.image("http://kevinvognar.com/assets/profile.jpg", this.x, this.y, this.radius, this.radius)
-        var mask = this.map.circle(this.x + this.radius/2, this.y + this.radius/2, this.radius/2)
-        mask.attr({
-            fill: "white"
+        var pattern = this.map.image("http://kevinvognar.com/assets/profile.jpg", 0, 0, 1, 1).pattern(0, 0, 1, 1);
+        pattern.attr('patternUnits', 'objectBoundingBox');
+
+        //var image = this.map.image("http://kevinvognar.com/assets/profile.jpg", this.x, this.y, this.radius, this.radius);
+        var image = this.image = this.map.circle(0, 0, this.radius).attr('fill', pattern);
+        var resizeButton = this.map.circle(0, 0, 10);
+        resizeButton.transform('t' + this.radius + ',0');
+        var group = this.group = this.map.group(
+            image, resizeButton
+        );
+
+        group.addClass("bubble-group")
+        resizeButton.addClass("resize-button")
+        image.addClass("bubble")
+        group.drag();
+
+        var origTransform;
+        resizeButton.drag(function (dx, dy) {
+            group.undrag();
+            console.log("AUGH");
+            this.attr({
+                transform: origTransform + (origTransform ? "T" : "t") + [dx, dy]
+            });
+            var m = this.transform().localMatrix;
+            var r = Math.sqrt(m.e * m.e + m.f * m.f);
+            if(r > 20) {
+                image.attr('r', r);
+            }
+        },
+        function() {
+            origTransform = this.transform().local;
+        },
+        function() {
+            group.drag();
         });
-        this.bubble.attr({
-            mask: mask
-        });
-        this.bubble.addClass("bubble")
-        this.bubble.drag();
+
     }
+
+
 })();

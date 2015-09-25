@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.bubble-group .resize-button {
+    display: none;
+}
+
+.bubble-group:hover .resize-button {
+    display: inline;
+}
+
+.resize-button:hover {
+    display: inline;
+}

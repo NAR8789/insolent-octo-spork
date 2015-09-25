@@ -15,5 +15,5 @@ class Thumbnail < ActiveRecord::Base
   has_attached_file :thumbnail
 
   validates :comic, presence: true
-  validates_attachment :thumbnail, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
+  validates_attachment :thumbnail, presence: true, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 end

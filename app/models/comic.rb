@@ -15,4 +15,8 @@ class Comic < ActiveRecord::Base
 
   validates :name, :link, presence: true
   validates :name, uniqueness: {scope: :artist}
+
+  def to_s
+    self.name
+  end
 end

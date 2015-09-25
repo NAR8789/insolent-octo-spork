@@ -1,0 +1,4 @@
+= form_for [@comic, thumbnail], html: {multipart: true}, remote: true do |f|
+  .field
+    = f.file_field :thumbnail
+  .actions = f.submit

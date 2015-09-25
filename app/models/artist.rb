@@ -11,4 +11,8 @@ class Artist < ActiveRecord::Base
   has_many :comics
 
   validates :name, presence: true, uniqueness: true
+
+  def to_s
+    self.name
+  end
 end

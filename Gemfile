@@ -21,6 +21,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'slim'
 gem 'paperclip'
+gem 'remotipart'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -40,5 +41,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
+  gem 'slim-rails'
 end
 

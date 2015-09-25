@@ -1,9 +1,4 @@
-= form_for thumbnail do |f|
-  - if thumbnail.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(thumbnail.errors.count, "error")} prohibited this thumbnail from being saved:"
-      ul
-        - thumbnail.errors.full_messages.each do |message|
-          li = message
-
+= form_for [@comic, thumbnail], html: {multipart: true}, remote: true do |f|
+  .field
+    = f.file_field :thumbnail
   .actions = f.submit

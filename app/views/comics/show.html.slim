@@ -8,10 +8,16 @@ p
   = @comic.link
 p
   strong Artist:
-  = link_to @comic.artist, artist_path(@comic.artist)
+  = @comic.artist.nil? ? '' : link_to(@comic.artist, artist_path(@comic.artist))
 p
   strong Default description:
   = @comic.default_description
+
+h3 Thumbnails:
+p
+  - @comic.thumbnails.each do |thumbnail|
+    img src=thumbnail.thumbnail.url
+  == render partial: 'thumbnail', object: Thumbnail.new
 
 = link_to 'Edit', edit_comic_path(@comic)
 '|

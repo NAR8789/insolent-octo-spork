@@ -7,6 +7,11 @@ p
   strong Link:
   = @artist.link
 
+h3 comics
+ul
+  - @artist.comics.each do |comic|
+    li = link_to comic, comic_path(comic)
+
 = link_to 'Edit', edit_artist_path(@artist)
 '|
 = link_to 'Back', artists_path

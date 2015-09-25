@@ -8,7 +8,7 @@ p
   = @comic.link
 p
   strong Artist:
-  = @comic.artist
+  = link_to @comic.artist, artist_path(@comic.artist)
 p
   strong Default description:
   = @comic.default_description

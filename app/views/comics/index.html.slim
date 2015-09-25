@@ -1,0 +1,27 @@
+h1 Listing comics
+
+table
+  thead
+    tr
+      th Name
+      th Link
+      th Artist
+      th Default description
+      th
+      th
+      th
+
+  tbody
+    - @comics.each do |comic|
+      tr
+        td = comic.name
+        td = comic.link
+        td = comic.artist
+        td = comic.default_description
+        td = link_to 'Show', comic
+        td = link_to 'Edit', edit_comic_path(comic)
+        td = link_to 'Destroy', comic, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Comic', new_comic_path

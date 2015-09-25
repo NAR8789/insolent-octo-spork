@@ -1,3 +1,3 @@
 h1 Good Morning
 
-javascript: map = new Octospork.Map(Octospork.testBubbles); map.draw(); bubble = map.bubbles[0]
+javascript: map = new Octospork.Map(#{Bubble.all.map(&:to_poro).to_json.html_safe}); map.draw(); bubble = map.bubbles[0]

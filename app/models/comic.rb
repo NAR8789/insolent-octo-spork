@@ -11,7 +11,7 @@
 
 class Comic < ActiveRecord::Base
   belongs_to :artist
-  has_many :thumbnails
+  has_many :thumbnails, dependent: :destroy
 
   validates :name, :link, presence: true
   validates :name, uniqueness: {scope: :artist}

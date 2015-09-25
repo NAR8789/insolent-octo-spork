@@ -19,5 +19,11 @@ class Bubble < ActiveRecord::Base
   has_one :comic, through: :thumbnail
 
   validates :map, :thumbnail, :radius, :position_r, :position_theta, :description, presence: true
-  validates :comic, uniqueness: {scope: :map}
+
+  def to_poro
+    {
+        thumbnail: thumbnail.thumbnail.url,
+        radius: radius
+    }
+  end
 end
